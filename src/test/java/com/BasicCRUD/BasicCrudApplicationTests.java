@@ -42,7 +42,71 @@ class BasicCrudApplicationTests {
 	void getUser() {
 		Optional<User> val = user.findById(1L);
 		if (val.isPresent()) {
-			User us = new User();
+			User us = val.get();
+			System.out.println(us.getId());
+			System.out.println(us.getName());
+			System.out.println(us.getEmail());
+			System.out.println(us.getMobile());
+		} else {
+			System.out.println("No record found");
+		}
+	}
+	
+	@Test
+	void getAllUser() {
+		Iterable<User> allUser = user.findAll();
+		for(User us:allUser) {
+			System.out.println(us.getId());
+			System.out.println(us.getName());
+			System.out.println(us.getEmail());
+			System.out.println(us.getMobile());
+		}
+	}
+	
+	@Test
+	void getUserByEmail() {
+		Optional<User> val = user.findByEmail("bikashj995@gmail.com");
+		if (val.isPresent()) {
+			User us = val.get();
+			System.out.println(us.getId());
+			System.out.println(us.getName());
+			System.out.println(us.getEmail());
+			System.out.println(us.getMobile());
+		} else {
+			System.out.println("No record found");
+		}
+	}
+	
+	@Test
+	void getUserByMobile() {
+		Optional<User> val = user.findByMobile("8328857252");
+		if (val.isPresent()) {
+			User us = val.get();
+			System.out.println(us.getId());
+			System.out.println(us.getName());
+			System.out.println(us.getEmail());
+			System.out.println(us.getMobile());
+		} else {
+			System.out.println("No record found");
+		}
+	}
+	
+	@Test
+	void getAllUserByEmailOrMobile() {
+		Iterable<User> allUser = user.findByEmailOrMobile("bikashj995@gmail.com","8328857252");
+		for(User us:allUser) {
+			System.out.println(us.getId());
+			System.out.println(us.getName());
+			System.out.println(us.getEmail());
+			System.out.println(us.getMobile());
+		}
+	}
+	
+	@Test
+	void getUserByEmailAndMobile() {
+		Optional<User> val = user.findByEmailAndMobile("ankitamohaptra532@gmail.com","8328857252");
+		if (val.isPresent()) {
+			User us = val.get();
 			System.out.println(us.getId());
 			System.out.println(us.getName());
 			System.out.println(us.getEmail());
